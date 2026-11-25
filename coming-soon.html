@@ -1,0 +1,401 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon | Apex Car Wash</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --blue: #00c8ff;
+    --dark: #050a12;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background: var(--dark);
+    color: white;
+    overflow-x: hidden;
+}
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+    linear-gradient(90deg, rgba(3,8,16,.95), rgba(3,8,16,.45)),
+    url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=90&w=2000')
+    center/cover;
+    transform: scale(1.04);
+    animation: zoom 20s infinite alternate;
+}
+
+@keyframes zoom {
+    to { transform: scale(1.13); }
+}
+
+.background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, #050a12 0%, transparent 65%);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 8%;
+}
+
+.logo {
+    font-family: 'Orbitron';
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.logo span { color: var(--blue); }
+
+.status {
+    border: 1px solid rgba(0,200,255,.5);
+    padding: 9px 17px;
+    border-radius: 30px;
+    color: var(--blue);
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+main {
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    padding: 50px 10%;
+}
+
+.content {
+    max-width: 750px;
+    animation: appear 1.2s ease;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(35px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tag {
+    color: var(--blue);
+    letter-spacing: 5px;
+    font-size: 12px;
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-family: 'Orbitron';
+    font-size: clamp(45px, 8vw, 95px);
+    line-height: 1.1;
+    font-weight: 900;
+}
+
+h1 span {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--blue);
+}
+
+.description {
+    color: #bdc8d5;
+    margin: 25px 0 35px;
+    line-height: 1.9;
+    max-width: 530px;
+    font-size: 14px;
+}
+
+.countdown {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.time {
+    width: 90px;
+    padding: 15px 8px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(0,200,255,.2);
+    border-radius: 12px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.time h2 {
+    color: var(--blue);
+    font-family: 'Orbitron';
+    font-size: 27px;
+}
+
+.time small {
+    font-size: 9px;
+    color: #a9b7c5;
+    letter-spacing: 2px;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 15px 28px;
+    border-radius: 5px;
+    border: 1px solid var(--blue);
+    background: var(--blue);
+    color: #00111b;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+button:hover {
+    background: transparent;
+    color: var(--blue);
+    box-shadow: 0 0 25px rgba(0,200,255,.35);
+    transform: translateY(-4px);
+}
+
+button.secondary {
+    background: transparent;
+    color: white;
+    border-color: rgba(255,255,255,.4);
+}
+
+footer {
+    padding: 25px 8%;
+    color: #788696;
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.glow {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    background: var(--blue);
+    filter: blur(150px);
+    opacity: .12;
+    border-radius: 50%;
+    top: 35%;
+    right: -100px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(12px);
+}
+
+.modal.active { display: flex; }
+
+.modal-content {
+    max-width: 420px;
+    width: 100%;
+    padding: 40px;
+    text-align: center;
+    background: #101c2a;
+    border: 1px solid var(--blue);
+    border-radius: 15px;
+    animation: appear .4s ease;
+}
+
+.modal-content h2 {
+    font-family: 'Orbitron';
+    margin-bottom: 15px;
+    color: var(--blue);
+}
+
+.modal-content p {
+    color: #b8c6d5;
+    font-size: 13px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+@media(max-width:600px) {
+    nav { padding: 25px 6%; }
+    main { padding: 50px 7%; }
+    .status { font-size: 9px; }
+    footer { padding: 20px 7%; }
+}
+.exit-btn {
+    background-color: transparent;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    position: absolute;
+    top: 10px;
+    right: 5px;
+}
+
+.exit-btn:hover {
+    background-color: red;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="glow"></div>
+
+<nav>
+    <div class="logo">APEX<span>.</span></div>
+    <div class="status">● COMING SOON</div>
+</nav>
+
+<main>
+    <div class="content">
+        <div class="tag">THE FUTURE OF CAR CARE</div>
+
+        <h1>
+            OUR<br>
+            <span>PRODUCT SECTION</span><br>
+            IS COMING SOON.
+        </h1>
+
+        <p class="description">
+            We're preparing something extraordinary.
+            A new experience in premium car care is on its way.
+            Get ready to experience the difference with APEX CAR WASH.
+        </p>
+
+        <div class="countdown">
+            <div class="time">
+                <h2 id="days">00</h2>
+                <small>DAYS</small>
+            </div>
+            <div class="time">
+                <h2 id="hours">00</h2>
+                <small>HOURS</small>
+            </div>
+            <div class="time">
+                <h2 id="minutes">00</h2>
+                <small>MINUTES</small>
+            </div>
+            <div class="time">
+                <h2 id="seconds">00</h2>
+                <small>SECONDS</small>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button onclick="openModal()">DISCOVER MORE ↗</button>
+            <button class="secondary" onclick="sharePage()">SHARE PAGE</button>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div>© 2026 APEX CAR WASH. ALL RIGHTS RESERVED.</div>
+    <div>CRAFTED FOR EXCELLENCE.</div>
+</footer>
+
+<div class="modal" id="modal" onclick="closeOutside(event)">
+    <div class="modal-content">
+        <h2>GET READY.</h2>
+        <p>
+            APEX CAR WASH is getting ready to redefine
+            your car care experience. Stay tuned for the launch!
+        </p>
+        <button onclick="closeModal()">EXCITING! ✦</button>
+    </div>
+</div>
+
+<script>
+// Set your launch date here
+const launchDate = new Date("2027-01-01T00:00:00").getTime();
+
+function updateCountdown() {
+    const now = Date.now();
+    const distance = launchDate - now;
+
+    if (distance <= 0) {
+        document.querySelector(".countdown").innerHTML =
+            "<h2 style='color:#00c8ff'>WE ARE LIVE!</h2>";
+        return;
+    }
+
+    const d = Math.floor(distance / 86400000);
+    const h = Math.floor((distance % 86400000) / 3600000);
+    const m = Math.floor((distance % 3600000) / 60000);
+    const s = Math.floor((distance % 60000) / 1000);
+
+    document.getElementById("days").textContent = String(d).padStart(2,"0");
+    document.getElementById("hours").textContent = String(h).padStart(2,"0");
+    document.getElementById("minutes").textContent = String(m).padStart(2,"0");
+    document.getElementById("seconds").textContent = String(s).padStart(2,"0");
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+function openModal() {
+    document.getElementById("modal").classList.add("active");
+}
+
+function closeModal() {
+    document.getElementById("modal").classList.remove("active");
+}
+
+function closeOutside(e) {
+    if(e.target.id === "modal") closeModal();
+}
+
+function sharePage() {
+    if(navigator.share) {
+        navigator.share({
+            title: "APEX CAR WASH",
+            text: "Something amazing is coming!",
+            url: location.href
+        });
+    } else {
+        navigator.clipboard.writeText(location.href);
+        alert("Page link copied!");
+    }
+}
+</script>
+       <button onclick="window.location.href='index.html'" class="exit-btn"> X</button>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Before & After | Premium Car Wash</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+<!-- Bootstrap Icons -->
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<!-- html2canvas for downloading the card -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+    <style>
+
+/* VIP Membership Section */
+.vip-section {
+    background: #101010;
+    color: white;
+    padding: 90px 0;
+    overflow: hidden;
+}
+
+.vip-heading {
+    margin-bottom: 65px;
+}
+
+.vip-heading span,
+.vip-small-title {
+    color: #d4af37;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.vip-heading h2 {
+    font-size: 36px;
+    font-weight: 800;
+    margin: 12px 0;
+}
+
+.vip-heading p {
+    color: #aaa;
+}
+
+/* VIP Card */
+.vip-card {
+    position: relative;
+    padding: 30px;
+    min-height: 340px;
+    border-radius: 20px;
+    overflow: hidden;
+    color: #fff;
+    background:
+        radial-gradient(circle at 85% 15%, rgba(212,175,55,.3), transparent 35%),
+        linear-gradient(135deg, #252525, #050505 65%);
+    border: 1px solid #b99a3b;
+    box-shadow: 0 15px 45px rgba(212,175,55,.18);
+    transition: .4s ease;
+}
+
+.vip-card::before {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border: 1px solid rgba(212,175,55,.2);
+    border-radius: 50%;
+    right: -70px;
+    bottom: -100px;
+}
+
+.vip-card:hover {
+    transform: translateY(-10px) rotateX(3deg);
+    box-shadow: 0 25px 55px rgba(212,175,55,.25);
+}
+
+.vip-card-top,
+.vip-card-bottom,
+.vip-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.vip-card-top h3 {
+    color: #d4af37;
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    margin: 0;
+}
+
+.vip-card-top span {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #ccc;
+}
+
+.vip-chip {
+    font-size: 38px;
+    color: #d4af37;
+}
+
+.vip-card-middle {
+    margin: 35px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.member-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #d4af37;
+}
+
+.vip-card-middle h2 {
+    font-size: 35px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin: 8px 0;
+}
+
+.vip-stars {
+    color: #d4af37;
+    letter-spacing: 5px;
+}
+
+.vip-card-bottom {
+    border-top: 1px solid rgba(212,175,55,.4);
+    padding-top: 18px;
+}
+
+.vip-card-bottom span {
+    color: #aaa;
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.vip-card-bottom h5 {
+    color: #fff;
+    font-size: 14px;
+    margin-top: 5px;
+    font-weight: 700;
+}
+
+.vip-card-footer {
+    margin-top: 22px;
+    font-size: 9px;
+    color: #d4af37;
+    letter-spacing: 1px;
+}
+
+/* Download Button */
+.vip-download-btn {
+    background: #d4af37;
+    color: #111;
+    padding: 13px 25px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.vip-download-btn:hover {
+    background: #fff;
+    transform: translateY(-3px);
+}
+
+/* Benefits */
+.vip-content h2 {
+    font-size: 42px;
+    font-weight: 800;
+    margin: 15px 0;
+}
+
+.vip-content > p {
+    color: #aaa;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.vip-benefit {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 22px;
+    align-items: flex-start;
+}
+
+.vip-benefit i {
+    font-size: 25px;
+    color: #d4af37;
+}
+
+.vip-benefit h5 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.vip-benefit p {
+    color: #aaa;
+    font-size: 13px;
+    margin: 0;
+}
+
+@media (max-width: 576px) {
+    .vip-section {
+        padding: 60px 0;
+    }
+
+    .vip-heading h2 {
+        font-size: 27px;
+    }
+
+    .vip-card {
+        padding: 22px;
+        min-height: 310px;
+    }
+
+    .vip-card-middle h2 {
+        font-size: 27px;
+    }
+
+    .vip-content h2 {
+        font-size: 32px;
+    }
+
+    .vip-card-footer {
+        font-size: 8px;
+    }
+}
+.exit-btn {
+    background-color: transparent;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    position: absolute;
+    top: 10px;
+    right: 5px;
+}
+
+.exit-btn:hover {
+    background-color: #b02a37;
+}
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+<!-- VIP Membership Section -->
+<section class="vip-section" id="vip-membership">
+    <div class="container">
+
+        <div class="text-center vip-heading">
+            <span>EXCLUSIVE MEMBERSHIP</span>
+            <h2>JOIN THE APEX VIP CLUB</h2>
+            <p>Enjoy premium car care with exclusive rewards and benefits.</p>
+        </div>
+
+        <div class="row align-items-center justify-content-center g-5">
+
+            <!-- Membership Card -->
+            <div class="col-lg-6">
+
+                <div class="vip-card" id="vipCard">
+
+                    <div class="vip-card-top">
+                        <div>
+                            <h3>APEX</h3>
+                            <span>AUTO WASH</span>
+                        </div>
+
+                        <div class="vip-chip">
+                            <i class="bi bi-gem"></i>
+                        </div>
+                    </div>
+
+                    <div class="vip-card-middle">
+                        <span class="member-label">PREMIUM MEMBERSHIP</span>
+                        <h2>VIP MEMBER</h2>
+                        <div class="vip-stars">★★★★★</div>
+                    </div>
+
+                    <div class="vip-card-bottom">
+                        <div>
+                            <span>CARD HOLDER</span>
+                            <h5 id="cardName">YOUR NAME</h5>
+                        </div>
+
+                        <div>
+                            <span>MEMBER ID</span>
+                            <h5 id="memberId">APEX001</h5>
+                        </div>
+                    </div>
+
+                    <div class="vip-card-footer">
+                        <span>EXCLUSIVE CAR CARE EXPERIENCE</span>
+                        <span>GOLD MEMBER</span>
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-4">
+                    <button class="vip-download-btn" onclick="downloadVIPCard()">
+                        <i class="bi bi-download"></i> Download Membership Card
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Membership Benefits -->
+            <div class="col-lg-5">
+
+                <div class="vip-content">
+                    <span class="vip-small-title">WHY BECOME A MEMBER?</span>
+
+                    <h2>More Care.<br>More Rewards.</h2>
+
+                    <p>
+                        Become an APEX VIP member and enjoy exclusive
+                        benefits designed for your vehicle.
+                    </p>
+
+                    <div class="vip-benefit">
+                        <i class="bi bi-percent"></i>
+                        <div>
+                            <h5>Exclusive Discounts</h5>
+                            <p>Special discounts on selected services.</p>
+                        </div>
+                    </div>
+
+                    <div class="vip-benefit">
+                        <i class="bi bi-calendar-check"></i>
+                        <div>
+                            <h5>Priority Booking</h5>
+                            <p>Get priority when scheduling your car wash.</p>
+                        </div>
+                    </div>
+
+                    <div class="vip-benefit">
+                        <i class="bi bi-gift"></i>
+                        <div>
+                            <h5>Special Rewards</h5>
+                            <p>Enjoy exclusive offers and member rewards.</p>
+                        </div>
+                    </div>
+
+                    <div class="vip-benefit">
+                        <i class="bi bi-stars"></i>
+                        <div>
+                            <h5>Premium Experience</h5>
+                            <p>Enjoy a more rewarding car care experience.</p>
+                        </div>
+                        <button onclick="window.location.href='index.html'" class="exit-btn">
+                         X
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+<script type="text/javascript">
+function generateVIPCard() {
+    const name = prompt("Enter your full name:");
+
+    if (!name || !name.trim()) {
+        alert("Please enter your name.");
+        return;
+    }
+
+    document.getElementById("cardName").textContent =
+        name.trim().toUpperCase();
+
+    const randomID = Math.floor(1000 + Math.random() * 9000);
+
+    document.getElementById("memberId").textContent =
+        "APEX" + randomID;
+}
+
+// Download VIP Card
+function downloadVIPCard() {
+    const card = document.getElementById("vipCard");
+
+    html2canvas(card, {
+        backgroundColor: null,
+        scale: 2
+    }).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "APEX-VIP-Membership.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+    });
+}
+
+// Generate a sample member when the page loads
+generateVIPCard();
+</script>
+</section>
+
+
+
+</body>
+</html>

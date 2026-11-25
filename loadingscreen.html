@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxury Loading Screen</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, serif;
+}
+
+/* FULL SCREEN */
+.loader-screen {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background:
+        radial-gradient(ellipse at center,
+        #292313 0%, #100e09 40%, #050505 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 999999;
+    overflow: hidden;
+    transition: opacity 0.8s ease, visibility 12s ease;
+}
+
+.loader-screen.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* BACKGROUND GLOW */
+.loader-screen::before {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: #D4AF37;
+    filter: blur(150px);
+    opacity: 0.12;
+}
+
+/* LOGO / BRAND */
+.brand {
+    color: #D4AF37;
+    font-size: 35px;
+    letter-spacing: 9px;
+    text-transform: uppercase;
+    margin-bottom: 45px;
+    animation: fadeIn 2s ease;
+}
+
+/* ANIMATED RINGS */
+.loader-circle {
+    width: 130px;
+    height: 130px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(212,175,55,0.25);
+}
+
+.ring.one {
+    width: 130px;
+    height: 130px;
+    border-top: 2px solid #D4AF37;
+    animation: rotate 2s linear infinite;
+}
+
+.ring.two {
+    width: 100px;
+    height: 100px;
+    border-bottom: 2px solid #D4AF37;
+    animation: rotateReverse 3s linear infinite;
+}
+
+.ring.three {
+    width: 65px;
+    height: 65px;
+    border-left: 2px solid #D4AF37;
+    animation: rotate 1.5s linear infinite;
+}
+
+/* CENTER DOT */
+.center-dot {
+    width: 9px;
+    height: 9px;
+    background: #D4AF37;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #D4AF37;
+}
+
+/* LOADING TEXT */
+.loading-title {
+    margin-top: 45px;
+    color: #D4AF37;
+    font-size: 12px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+}
+
+/* PROGRESS BAR */
+.progress-container {
+    width: 200px;
+    height: 2px;
+    background: rgba(212,175,55,0.2);
+    margin-top: 25px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #D4AF37;
+    box-shadow: 0 0 12px #D4AF37;
+    transition: width 0.2s linear;
+}
+
+/* PERCENTAGE */
+.percentage {
+    margin-top: 14px;
+    color: #b9a36b;
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+/* ANIMATIONS */
+@keyframes rotate {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes rotateReverse {
+    to { transform: rotate(-360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADING SCREEN -->
+<div class="loader-screen" id="loader">
+
+    <div class="brand">APEX CAR WASH</div>
+
+    <div class="loader-circle">
+        <div class="ring one"></div>
+        <div class="ring two"></div>
+        <div class="ring three"></div>
+        <div class="center-dot"></div>
+    </div>
+
+    <div class="loading-title">Loading..</div>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progress"></div>
+    </div>
+
+    <div class="percentage" id="percentage">0%</div>
+
+</div>
+
+<script>
+const loader = document.getElementById("loader");
+const progress = document.getElementById("progress");
+const percentage = document.getElementById("percentage");
+
+let value = 0;
+let pageLoaded = false;
+
+window.addEventListener("load", () => {
+    pageLoaded = true;
+});
+
+const loading = setInterval(() => {
+
+    if (value < 90) {
+        value += Math.floor(Math.random() * 4) + 1;
+        value = Math.min(value, 90);
+    }
+
+    if (pageLoaded) {
+        value = 100;
+    }
+
+    progress.style.width = value + "%";
+    percentage.textContent = value + "%";
+
+    if (value >= 100) {
+        clearInterval(loading);
+
+        setTimeout(() => {
+            loader.classList.add("hide");
+        }, 4000);
+    }
+
+}, 80);
+</script>
+
+</body>
+</html>

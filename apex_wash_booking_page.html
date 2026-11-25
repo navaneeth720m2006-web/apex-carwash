@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070b10">
+  <title>Book Your Wash | APEX AUTO WASH</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--cyan:#00d9ff;--bg:#070b10;--panel:#101820;--muted:#9aa8b5;--line:#293744}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#f5f8fa;font-family:Inter,Arial,sans-serif}
+    a{text-decoration:none}
+    .navbar{background:rgba(5,9,14,.94);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(12px)}
+    .brand{font-family:"Barlow Condensed",sans-serif;font-weight:900;letter-spacing:2px;font-size:1.8rem;color:#fff}
+    .brand span{color:var(--cyan)}
+    .nav-link{color:#dce5eb!important;font-size:.9rem}
+    .nav-link:hover,.nav-link.active{color:var(--cyan)!important}
+    .hero{position:relative;padding:125px 0 75px;overflow:hidden;background:linear-gradient(90deg,rgba(4,8,12,.97),rgba(4,8,12,.72)),url("https://images.unsplash.com/photo-1607860108855-64acedf2f992?auto=format&fit=crop&w=1800&q=85");background-size:cover;background-position:center}
+    .hero:after{content:"";position:absolute;width:380px;height:380px;border:1px solid rgba(0,217,255,.18);border-radius:50%;right:-100px;top:-140px;box-shadow:0 0 0 45px rgba(0,217,255,.025),0 0 0 90px rgba(0,217,255,.02)}
+    .eyebrow{color:var(--cyan);font-size:.76rem;letter-spacing:4px;font-weight:800;text-transform:uppercase}
+    h1,h2,h3,.display-font{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;font-weight:800}
+    .hero h1{font-size:clamp(3.2rem,8vw,6rem);line-height:.9;margin:15px 0}
+    .hero h1 span{color:var(--cyan)}
+    .hero p{max-width:620px;color:#c4ced6;line-height:1.8}
+    .booking-wrap{padding:70px 0 90px}
+    .booking-card,.side-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 55px rgba(0,0,0,.22)}
+    .booking-card{padding:clamp(20px,4vw,38px)}
+    .side-card{padding:26px;position:sticky;top:100px}
+    .section-title{font-size:2rem;margin:0 0 6px}
+    .section-sub{color:var(--muted);font-size:.9rem}
+    .step-dot{width:34px;height:34px;border-radius:50%;display:inline-grid;place-items:center;background:rgba(0,217,255,.12);border:1px solid rgba(0,217,255,.45);color:var(--cyan);font-weight:800;margin-right:10px}
+    .form-label{font-size:.84rem;font-weight:700;color:#eaf1f5;margin-bottom:8px}
+    .form-control,.form-select{min-height:49px;background:#091119;color:#f5f8fa;border:1px solid #344452;border-radius:9px}
+    textarea.form-control{min-height:105px}
+    .form-control::placeholder{color:#71808c}
+    .form-control:focus,.form-select:focus{background:#091119;color:#fff;border-color:var(--cyan);box-shadow:0 0 0 .2rem rgba(0,217,255,.12)}
+    .form-select option{background:#101820;color:#fff}
+    .form-check-input{background-color:#091119;border-color:#60717e}
+    .form-check-input:checked{background-color:var(--cyan);border-color:var(--cyan)}
+    .price-box{background:linear-gradient(120deg,rgba(0,217,255,.13),rgba(0,217,255,.035));border:1px solid rgba(0,217,255,.38);border-radius:12px;padding:18px}
+    .price{font-family:"Barlow Condensed",sans-serif;font-size:2.3rem;font-weight:800;color:var(--cyan)}
+    .btn-apex{background:var(--cyan);color:#001116;font-weight:800;letter-spacing:1px;border:0;border-radius:8px;padding:15px 22px;transition:.2s}
+    .btn-apex:hover{background:#fff;color:#001116;transform:translateY(-2px)}
+    .btn-outline-apex{border:1px solid var(--cyan);color:var(--cyan);border-radius:8px}
+    .btn-outline-apex:hover{background:var(--cyan);color:#001116}
+    .info-row{display:flex;gap:13px;align-items:flex-start;margin:18px 0;color:#c7d1d8;font-size:.9rem;line-height:1.6}
+    .info-row i{font-size:1.2rem;color:var(--cyan)}
+    .mini-note{font-size:.76rem;color:var(--muted);line-height:1.6}
+    .divider{height:1px;background:var(--line);margin:22px 0}
+    .success-panel{display:none;background:#0c211c;border:1px solid #1d8b69;border-radius:12px;padding:20px;margin-top:22px}
+    .success-panel.show{display:block}
+    .success-panel h3{color:#7df0c2;font-size:1.5rem}
+    footer{background:#05080c;border-top:1px solid var(--line);padding:25px 0;color:#82909b;font-size:.85rem}
+    @media(max-width:991px){.side-card{position:static;margin-top:24px}}
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand brand" href="index.html">APEX <span>AUTO WASH</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link active" href="booking.html">Book a Wash</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="vip-membership.html">VIP Membership</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html"><i class="fa-solid fa-right-from-bracket" style="color: rgb(255, 255, 255);"></a></i></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container position-relative" style="z-index:1">
+    <div class="eyebrow">APEX AUTO WASH · EASY ONLINE APPOINTMENT</div>
+    <h1>BOOK YOUR <span>WASH.</span><br>WE'LL HANDLE THE SHINE.</h1>
+    <p>Choose your vehicle, select the service you need, and request a convenient date and time. Our team will contact you to confirm availability.</p>
+    <a href="#bookingForm" class="btn btn-apex mt-2">BOOK AN APPOINTMENT <i class="bi bi-arrow-down-right ms-2"></i></a>
+  </div>
+</header>
+
+<main class="booking-wrap" id="bookingForm">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <section class="booking-card">
+          <div class="mb-4">
+            <div class="eyebrow">RESERVATION FORM</div>
+            <h2 class="section-title">Let's book your car wash</h2>
+            <p class="section-sub mb-0">Fill in the details below. Fields marked * are required.</p>
+          </div>
+          <form id="washBookingForm" novalidate>
+            <div class="mb-4">
+              <h3 class="h4 mb-3"><span class="step-dot">01</span> Your details</h3>
+              <div class="row g-3">
+                <div class="col-md-6"><label class="form-label" for="fullName">Full name *</label><input class="form-control" id="fullName" name="fullName" placeholder="Your name" required minlength="2"><div class="invalid-feedback">Please enter your name.</div></div>
+                <div class="col-md-6"><label class="form-label" for="phone">Mobile number *</label><input class="form-control" id="phone" name="phone" type="tel" placeholder="+91 98765 43210" pattern="[0-9+() -]{8,16}" required><div class="invalid-feedback">Please enter a valid phone number.</div></div>
+                <div class="col-md-6"><label class="form-label" for="email">Email address</label><input class="form-control" id="email" name="email" type="email" placeholder="you@example.com"><div class="invalid-feedback">Enter a valid email address.</div></div>
+                <div class="col-md-6"><label class="form-label" for="location">Preferred branch / area</label><input class="form-control" id="location" name="location" placeholder="Enter your preferred location"></div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="mb-4">
+              <h3 class="h4 mb-3"><span class="step-dot">02</span> Vehicle information</h3>
+              <div class="row g-3">
+                <div class="col-md-6"><label class="form-label" for="carModel">Car make and model *</label><input class="form-control" id="carModel" name="carModel" placeholder="e.g. Maruti Swift" required><div class="invalid-feedback">Enter your car model.</div></div>
+                <div class="col-md-6"><label class="form-label" for="vehicleType">Vehicle type *</label><select class="form-select" id="vehicleType" name="vehicleType" required><option value="">Select vehicle type</option><option value="Hatchback">Hatchback</option><option value="Sedan">Sedan</option><option value="SUV / MUV">SUV / MUV</option><option value="Luxury">Luxury car</option></select><div class="invalid-feedback">Select your vehicle type.</div></div>
+                <div class="col-md-6"><label class="form-label" for="plate">Vehicle registration number</label><input class="form-control" id="plate" name="plate" placeholder="e.g. KL 08 AB 1234"></div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="mb-4">
+              <h3 class="h4 mb-3"><span class="step-dot">03</span> Choose your wash</h3>
+              <div class="row g-3">
+                <div class="col-md-6"><label class="form-label" for="service">Select service *</label><select class="form-select" id="service" name="service" required><option value="">Choose a service</option><option value="Quick Wash">Quick Wash</option><option value="Exterior Wash">Exterior Wash</option><option value="Interior Cleaning">Interior Cleaning</option><option value="Premium Shine">Premium Shine</option><option value="Full Car Detailing">Full Car Detailing</option><option value="Ultimate Detail">Ultimate Detail</option><option value="Paint Protection">Paint Protection</option></select><div class="invalid-feedback">Choose a service.</div></div>
+                <div class="col-md-6"><label class="form-label" for="extras">Extra service</label><select class="form-select" id="extras" name="extras"><option value="None">No extra service</option><option value="Tyre polish">Tyre polish (+₹150)</option><option value="Dashboard polish">Dashboard polish (+₹200)</option><option value="Engine bay cleaning">Engine bay cleaning (+₹400)</option></select></div>
+              </div>
+              <div class="price-box mt-3 d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <div><div class="small text-uppercase text-secondary fw-bold">Estimated total</div><div class="mini-note">Indicative price only; final quote confirmed by our team.</div></div>
+                <div class="price" id="estimatedPrice">₹ —</div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="mb-4">
+              <h3 class="h4 mb-3"><span class="step-dot">04</span> Date & time</h3>
+              <div class="row g-3">
+                <div class="col-md-6"><label class="form-label" for="date">Preferred date *</label><input class="form-control" id="date" name="date" type="date" required><div class="invalid-feedback">Choose a date.</div></div>
+                <div class="col-md-6"><label class="form-label" for="time">Preferred time *</label><select class="form-select" id="time" name="time" required><option value="">Select a time slot</option><option>09:00 AM – 10:00 AM</option><option>10:00 AM – 11:00 AM</option><option>11:00 AM – 12:00 PM</option><option>12:00 PM – 01:00 PM</option><option>02:00 PM – 03:00 PM</option><option>03:00 PM – 04:00 PM</option><option>04:00 PM – 05:00 PM</option><option>05:00 PM – 06:00 PM</option></select><div class="invalid-feedback">Choose a time slot.</div></div>
+                <div class="col-12"><label class="form-label" for="notes">Special instructions</label><textarea class="form-control" id="notes" name="notes" placeholder="Any specific cleaning requirements?"></textarea></div>
+              </div>
+            </div>
+            <div class="form-check mb-4"><input class="form-check-input" type="checkbox" id="consent" required><label class="form-check-label mini-note" for="consent">I understand this is an appointment request and my slot is not confirmed until APEX AUTO WASH contacts me.</label><div class="invalid-feedback">Please confirm to continue.</div></div>
+            <button class="btn btn-apex w-100" type="submit">SUBMIT BOOKING REQUEST <i class="bi bi-arrow-right ms-2"></i></button>
+          
+          </form>
+          <div class="success-panel" id="successPanel" role="status" aria-live="polite">
+            <h3><i class="bi bi-check-circle-fill me-2"></i>Request prepared!</h3>
+            <p class="mb-1" id="successMessage"></p>
+            <p class="mini-note mb-0">WhatsApp should open with your booking details. Send the message and wait for the team to confirm your appointment.</p>
+          </div>
+        </section>
+      </div>
+      <aside class="col-lg-4">
+        <div class="side-card">
+          <div class="eyebrow">WHY BOOK WITH US?</div>
+          <h2 class="section-title">A better wash experience</h2>
+          <div class="info-row"><i class="bi bi-calendar2-check"></i><div><strong>Convenient scheduling</strong><br>Request the date and time that works for you.</div></div>
+          <div class="info-row"><i class="bi bi-droplet-half"></i><div><strong>Careful cleaning</strong><br>Choose from exterior washing to complete detailing.</div></div>
+          <div class="info-row"><i class="bi bi-car-front"></i><div><strong>Vehicle-specific service</strong><br>Tell us your vehicle type for a more accurate estimate.</div></div>
+          <div class="info-row"><i class="bi bi-chat-dots"></i><div><strong>Personal confirmation</strong><br>Our team will contact you to confirm the slot.</div></div>
+          <div class="divider"></div>
+          <h3 class="h4">Need help?</h3>
+          <p class="mini-note">Contact the APEX AUTO WASH team if you need help choosing a package or changing your appointment.</p>
+          <a class="btn btn-outline-apex w-100" href="index.html#contact"><i class="bi bi-telephone me-2"></i>CONTACT US</a>
+          <p class="mini-note mt-3 mb-0"><i class="bi bi-shield-check text-info me-1"></i> Your appointment is only confirmed after our team replies.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer><div class="container d-flex flex-column flex-md-row justify-content-between gap-2"><span>© <span id="year"></span> APEX AUTO WASH. All rights reserved.</span><span>DRIVE CLEAN. DRIVE APEX.</span></div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Update these demo prices to match your actual service menu.
+  const servicePrices = {
+    "Quick Wash": 299,
+    "Exterior Wash": 499,
+    "Interior Cleaning": 699,
+    "Premium Shine": 999,
+    "Full Car Detailing": 1499,
+    "Ultimate Detail": 2499,
+    "Paint Protection": 2999
+  };
+  const vehicleFactors = {"Hatchback":1,"Sedan":1.15,"SUV / MUV":1.3,"Luxury":1.5};
+  const extraPrices = {"None":0,"Tyre polish":150,"Dashboard polish":200,"Engine bay cleaning":400};
+  const service = document.getElementById("service");
+  const vehicle = document.getElementById("vehicleType");
+  const extras = document.getElementById("extras");
+  const priceOutput = document.getElementById("estimatedPrice");
+  const dateField = document.getElementById("date");
+
+  const now = new Date();
+  dateField.min = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;
+
+  function calculatePrice(){
+    const base = servicePrices[service.value];
+    const factor = vehicleFactors[vehicle.value];
+    if(!base || !factor){priceOutput.textContent="₹ —";return null;}
+    const total = Math.round(base*factor)+(extraPrices[extras.value]||0);
+    priceOutput.textContent = "₹ "+total.toLocaleString("en-IN");
+    return total;
+  }
+  [service,vehicle,extras].forEach(el=>el.addEventListener("change",calculatePrice));
+
+  document.getElementById("washBookingForm").addEventListener("submit",function(event){
+    event.preventDefault();
+    event.stopPropagation();
+    if(!this.checkValidity()){
+      this.classList.add("was-validated");
+      this.querySelector(":invalid")?.focus();
+      return;
+    }
+    const formData = new FormData(this);
+    const total = calculatePrice();
+    const bookingRef = "APX-"+Date.now().toString().slice(-7);
+    const details = {
+      reference:bookingRef,
+      name:formData.get("fullName"),
+      phone:formData.get("phone"),
+      email:formData.get("email")||"Not provided",
+      location:formData.get("location")||"Not specified",
+      car:formData.get("carModel"),
+      vehicle:formData.get("vehicleType"),
+      registration:formData.get("plate")||"Not provided",
+      service:formData.get("service"),
+      extra:formData.get("extras"),
+      date:formData.get("date"),
+      time:formData.get("time"),
+      estimatedPrice:total,
+      notes:formData.get("notes")||"None",
+      status:"Awaiting confirmation",
+      createdAt:new Date().toISOString()
+    };
+    // Browser-local demo record only; not shared with an admin or other devices.
+    const previous = JSON.parse(localStorage.getItem("apexWashBookingRequests")||"[]");
+    previous.push(details);
+    localStorage.setItem("apexWashBookingRequests",JSON.stringify(previous));
+
+    document.getElementById("successMessage").textContent =
+      `Reference ${bookingRef} · ${details.service} · ${details.date} at ${details.time} · Estimated ₹${total.toLocaleString("en-IN")}.`;
+    document.getElementById("successPanel").classList.add("show");
+
+    const message = [
+      "Hello APEX AUTO WASH! I would like to request a car wash appointment.",
+      "",
+      "Booking reference: "+details.reference,
+      "Name: "+details.name,
+      "Phone: "+details.phone,
+      "Email: "+details.email,
+      "Preferred area: "+details.location,
+      "Car: "+details.car,
+      "Vehicle type: "+details.vehicle,
+      "Registration: "+details.registration,
+      "Service: "+details.service,
+      "Extra: "+details.extra,
+      "Date: "+details.date,
+      "Time: "+details.time,
+      "Estimated price: ₹"+total.toLocaleString("en-IN"),
+      "Instructions: "+details.notes,
+      "",
+      "Please confirm availability for this appointment."
+    ].join("\n");
+
+    // Replace with the real business WhatsApp number in international format, digits only.
+    const businessWhatsAppNumber = "917907699688";
+    window.open("https://wa.me/"+businessWhatsAppNumber+"?text="+encodeURIComponent(message),"_blank","noopener,noreferrer");
+    document.getElementById("successPanel").scrollIntoView({behavior:"smooth",block:"nearest"});
+  });
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
